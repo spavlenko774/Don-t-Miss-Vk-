@@ -145,10 +145,10 @@
               });
           }
 
-          function showRewardedAd() {
+          function showRewardedAd(id) {
               vkBridge.send('VKWebAppShowNativeAds', { ad_format: "reward" }).then(data => {
                   console.log(data);
-                  window.unityInstance.SendMessage('VK SDK', 'OnRewarded', data.result);
+                  window.unityInstance.SendMessage('VK SDK', 'OnRewarded', id);
               })
           }
 
