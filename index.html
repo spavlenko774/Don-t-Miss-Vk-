@@ -113,16 +113,26 @@
       <!--VK SDK-->
       <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 
-      <!-- Инициализация, авторизация, сохранение и получение данных, показ рекламы -->
-      <script type="text/javascript">
+      <script>
 
           vkBridge.send('VKWebAppInit');
+          authenticateUser();
 
+      </script>
+
+      <script>
           function authenticateUser() {
               vkBridge.send('VKWebAppGetUserInfo').then(() => {
+<<<<<<< .mine
                   console.log('Successuccessful authentication!');
+
+=======
+                  console.log('successuccessful authentication');
+                  unityI.SendMessage('VK SDK', 'OnUserAuthentication');
+>>>>>>> .theirs
               });
           }
+<<<<<<< .mine
 
           function getUserData() {
               vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(data => {
@@ -138,7 +148,29 @@
               });
           }
 
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> .theirs
       </script>
 
+<<<<<<< .mine
   </body >
 </html >
+=======
+  </body>
+</html>
+>>>>>>> .theirs
