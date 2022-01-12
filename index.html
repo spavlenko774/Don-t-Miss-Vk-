@@ -139,7 +139,7 @@
               });
           }
 
-          function showFullscrenAd() {
+          function showFullscreenAd() {
               vkBridge.send('VKWebAppShowNativeAds', { ad_format: "interstitial" }).then(data => {
                   console.log(data);
               });
