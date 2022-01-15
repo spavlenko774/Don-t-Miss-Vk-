@@ -110,8 +110,9 @@
                   //console.log(score);
                   //console.log(Object.values(score));
                   //console.log(Object.values(score)[0]);
-                  console.log((Object.values(score)[0])[0]);
+                  //console.log((Object.values(score)[0])[0]);
                   console.log(Object.values((Object.values(score)[0])[0]));
+                  console.log(Object.values((Object.values(score)[0])[0])[1]);
                   window.unityInstance.SendMessage('Vk Sdk', 'GetDataFromYandex', Object.values(score).toString());
               });
           }
