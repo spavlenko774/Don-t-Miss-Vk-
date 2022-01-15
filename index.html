@@ -109,6 +109,7 @@
                   console.log('score received from the server: ' + score["_save"]);
                   console.log(score);
                   console.log(Object.values(score));
+                  console.log(Object.values(score)[0]);
                   window.unityInstance.SendMessage('Vk Sdk', 'GetDataFromYandex', Object.values(score).toString());
               });
           }
