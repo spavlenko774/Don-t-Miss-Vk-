@@ -23,7 +23,6 @@
           var canvas = document.querySelector("#unity-canvas");
           var loadingBar = document.querySelector("#unity-loading-bar");
           var progressBarFull = document.querySelector("#unity-progress-bar-full");
-          var warningBanner = document.querySelector("#unity-warning");
 
           // Shows a temporary message banner/ribbon for a few seconds, or
           // a permanent error message on top of the canvas if type=='error'.
@@ -31,23 +30,6 @@
           // Modify or remove this function to customize the visually presented
           // way that non-critical warnings and error messages are presented to the
           // user.
-          function unityShowBanner(msg, type) {
-              function updateBannerVisibility() {
-                  warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-              }
-              var div = document.createElement('div');
-              div.innerHTML = msg;
-              warningBanner.appendChild(div);
-              if (type == 'error') div.style = 'background: red; padding: 10px;';
-              else {
-                  if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-                  setTimeout(function () {
-                      warningBanner.removeChild(div);
-                      updateBannerVisibility();
-                  }, 5000);
-              }
-              updateBannerVisibility();
-          }
 
           var buildUrl = "Build";
           var loaderUrl = buildUrl + "/Build.loader.js";
@@ -59,7 +41,6 @@
               companyName: "HYPERNOVA GAMES",
               productName: "Don't Miss",
               productVersion: "1.0",
-              showBanner: unityShowBanner,
           };
 
           // By default Unity keeps WebGL canvas render target size matched with
@@ -85,7 +66,6 @@
               canvas.style.width = window.innerWidth + 'px';
               canvas.style.height = window.innerHeight + 'px';
 
-              //unityShowBanner('WebGL builds are not supported on mobile devices.');
           } else {
               // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
@@ -114,63 +94,31 @@
       <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 
       <script>
-
           vkBridge.send('VKWebAppInit');
-          authenticateUser();
-
       </script>
 
       <script>
           function authenticateUser() {
               vkBridge.send('VKWebAppGetUserInfo').then(() => {
-<<<<<<< .mine
-                  console.log('Successuccessful authentication!');
-
-=======
-                  console.log('successuccessful authentication');
-                  unityI.SendMessage('VK SDK', 'OnUserAuthentication');
->>>>>>> .theirs
+                  console.log('user is authorized');
               });
           }
-<<<<<<< .mine
 
           function getUserData() {
               vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(data => {
-                  console.log(data);
+                  console.log('score received from the server: ' + Object.values(score).toString());
                   window.unityInstance.SendMessage('Vk Sdk', 'GetDataFromYandex', Object.values(data).toString());
               });
           }
 
-          function setUserData(data) {
-              console.log(data);
-              vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": data }).then(_info => {
-                  console.log('saved!');
+          function setUserData(score) {
+              console.log(score);
+              vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": score }).then(_info => {
+                  console.log('score passed to the server: ' + score);
               });
           }
 
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
       </script>
 
-<<<<<<< .mine
   </body >
 </html >
-=======
-  </body>
-</html>
->>>>>>> .theirs
