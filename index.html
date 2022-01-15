@@ -105,15 +105,14 @@
           }
 
           function getUserData() {
-              vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(data => {
+              vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(score => {
                   console.log('score received from the server: ' + Object.values(score).toString());
                   window.unityInstance.SendMessage('Vk Sdk', 'GetDataFromYandex', Object.values(data).toString());
               });
           }
 
           function setUserData(score) {
-              console.log(score);
-              vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": score }).then(_info => {
+              vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": score.toString() }).then(_info => {
                   console.log('score passed to the server: ' + score);
               });
           }
