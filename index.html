@@ -108,6 +108,7 @@
               vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(score => {
                   console.log('score received from the server: ' + score["_save"]);
                   console.log(score);
+                  console.log(Object.values(score));
                   window.unityInstance.SendMessage('Vk Sdk', 'GetDataFromYandex', Object.values(score).toString());
               });
           }
