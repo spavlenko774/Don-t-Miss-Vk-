@@ -106,6 +106,7 @@
 
           function getUserData() {
               vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(score => {
+                  console.log(score);
                   console.log('score received from the server: ' + score[0]);
                   window.unityInstance.SendMessage('Vk Sdk', 'GetDataFromYandex', Object.values(score).toString());
               });
