@@ -112,9 +112,22 @@
           }
 
           function setUserData(score) {
-              vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": score.toString() }).then(_info => {
+              vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": score.toString() }).then(() => {
                   console.log('score passed to the server: ' + score);
               });
+          }
+
+          function showFullscreenAd() {
+              vkBridge.send('VKWebAppShowNativeAds', { ad_format: "interstitial" }).then(() => {
+                  //console.log(data);
+              });
+          }
+
+          function showRewardedAd(id) {
+              vkBridge.send('VKWebAppShowNativeAds', { ad_format: "reward" }).then(() => {
+                  window.unityInstance.SendMessage('Vk Sdk', 'OnRewarded', id);
+                  console.log('Rewarded! Id: ' + id);
+              })
           }
 
       </script>
