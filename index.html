@@ -136,6 +136,8 @@
               vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": score.toString() }).then(() => {
                   console.log('Score passed to the server: ' + score);
               });
+
+              setScoreInFeed(score);
           }
 
           function showFullscreenAd() {
@@ -164,12 +166,15 @@
               });
           }
 
-          function setScoreInFeed() {
+          function setScoreInFeed(score) {
               vkBridge.send("VKWebAppCallAPIMethod",
                   {
                       "method": "users.get", "request_id": "",
-                      "params": { "user_ids": user_id.toString(), "v": "{version}", "access_token": access_token.toString() }
-                  });
+                      "params": { "access_token": access_token, "user_id": user_id, "activity_id": 2, "value": score, "v": version}
+                  }).then(() => {
+                      console.log('Score setted!');
+                  }
+              );
           }
 
       </script>
