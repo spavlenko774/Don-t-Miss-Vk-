@@ -100,6 +100,7 @@
       <script>
           function runAtStart() {
               vkBridge.send("VKWebAppGetAuthToken", { "app_id": 8024061, "scope": "" }).then(token => {
+                  console.log(token);
                   console.log(token.access_token);
               });
 
