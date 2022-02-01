@@ -112,7 +112,7 @@
 
           function authenticateUser() {
               vkBridge.send('VKWebAppGetUserInfo').then(info => {
-                  console.log(info);
+                  user_id = info.id;
                   console.log('User is authorized');
               });
 
