@@ -99,6 +99,7 @@
 
       <script>
           var access_token;
+          var user_id;
 
           function runAtStart() {
               vkBridge.send("VKWebAppGetAuthToken", { "app_id": 8024061, "scope": "" }).then(token => {
@@ -110,7 +111,8 @@
           }
 
           function authenticateUser() {
-              vkBridge.send('VKWebAppGetUserInfo').then(() => {
+              vkBridge.send('VKWebAppGetUserInfo').then(info => {
+                  console.log(info);
                   console.log('User is authorized');
               });
 
