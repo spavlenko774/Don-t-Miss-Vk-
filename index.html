@@ -100,7 +100,7 @@
       <script>
           function runAtStart() {
               vkBridge.send("VKWebAppGetAuthToken", { "app_id": 8024061, "scope": "" }).then(token => {
-                  console.log(token[0]);
+                  console.log(token.access_token);
               });
 
               addToTMenu();
