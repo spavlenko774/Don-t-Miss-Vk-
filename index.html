@@ -99,11 +99,17 @@
 
       <script>
           var access_token;
+          var version;
           var user_id;
 
           function runAtStart() {
-              vkBridge.send("VKWebAppGetAuthToken", { "app_id": 8024061, "scope": "" }).then(token => {
-                  access_token = token.access_token;
+              vkBridge.send('VKWebAppGetAuthToken', { "app_id": 8024061, "scope": "" }).then(data => {
+                  access_token = data.access_token;
+              });
+
+              vkBridge.send('VKWebAppGetClientVersionResult').then(data => {
+                  version = data.version;
+                  console.log(version);
               });
 
               addToTMenu();
@@ -111,8 +117,8 @@
           }
 
           function authenticateUser() {
-              vkBridge.send('VKWebAppGetUserInfo').then(info => {
-                  user_id = info.id;
+              vkBridge.send('VKWebAppGetUserInfo').then(data => {
+                  user_id = data.id;
                   console.log('User is authorized');
               });
 
@@ -159,7 +165,11 @@
           }
 
           function setScoreInFeed() {
-
+              vkBridge.send("VKWebAppCallAPIMethod",
+                  {
+                      "method": "users.get", "request_id": "",
+                      "params": { "user_ids": user_id.toString(), "v": "{version}", "access_token": access_token.toString() }
+                  });
           }
 
       </script>
