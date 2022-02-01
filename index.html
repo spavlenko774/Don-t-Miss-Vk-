@@ -102,6 +102,9 @@
               vkBridge.send('VKWebAppGetUserInfo').then(() => {
                   console.log('User is authorized');
               });
+
+              addToTMenu();
+              allowNotification();
           }
 
           function getUserData() {
@@ -130,6 +133,20 @@
                   console.log('Rewarded! Id: ' + id);
               })
           }
+
+          function addToTMenu() {
+              vkBridge.send('VkWebAppAddToMenu').then(() => {
+                  console.log('Added to menu!');
+              });
+          }
+
+          function allowNotification() {
+              vkBridge.send('VKWebAppAllowNotifications').then(() => {
+                      console.log('Notifications allowed!');
+              });
+          }
+
+          
 
       </script>
 
