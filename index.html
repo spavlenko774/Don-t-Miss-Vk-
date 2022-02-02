@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Don't Miss</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
-  <body>
-      <div id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width=600 height=960></canvas>
-          <div id="unity-loading-bar">
-              <div id="unity-logo"></div>
-              <div id="unity-progress-bar-empty">
-                  <div id="unity-progress-bar-full"></div>
-              </div>
-          </div>
-          <div id="unity-warning"> </div>
-      </div>
-      <script>
+</head>
+<body>
+    <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" width=600 height=960></canvas>
+        <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+        </div>
+        <div id="unity-warning"> </div>
+    </div>
+    <script>
           var container = document.querySelector("#unity-container");
           var canvas = document.querySelector("#unity-canvas");
           var loadingBar = document.querySelector("#unity-loading-bar");
@@ -88,38 +88,46 @@
               });
           };
           document.body.appendChild(script);
-      </script>
+    </script>
 
-      <!--VK SDK-->
-      <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+    <!--VK SDK-->
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 
-      <script>
+    <script>
           vkBridge.send('VKWebAppInit');
-      </script>
+    </script>
 
-      <script>
+    <script>
           var access_token;
           var version;
           var user_id;
 
           function runAtStart() {
+              vkBridge.send('VKWebAppAddToMenu').then(() => {
+                console.log('Added to menu!');
+              });
+
+              vkBridge.send('VKWebAppAllowNotifications').then(() => {
+                  console.log('Notifications allowed!');
+              });
+          }
+
+          function GetInfo() {
               vkBridge.send('VKWebAppGetAuthToken', { "app_id": 8024061, "scope": "" }).then(data => {
                   access_token = data.access_token;
+                  console.log('Token received successfully')
               });
 
               vkBridge.send('VKWebAppGetClientVersionResult').then(data => {
                   version = data.version;
-                  console.log(version);
+                  console.log('User VK version: ' + version);
               });
-
-              addToTMenu();
-              allowNotification();
           }
 
           function authenticateUser() {
               vkBridge.send('VKWebAppGetUserInfo').then(data => {
                   user_id = data.id;
-                  console.log('User is authorized');
+                  console.log('User is authorized User id: ' + id);
               });
 
               runAtStart();
@@ -137,7 +145,14 @@
                   console.log('Score passed to the server: ' + score);
               });
 
-              setScoreInFeed(score);
+              vkBridge.send("VKWebAppCallAPIMethod",
+                  {
+                      "method": "users.get", "request_id": "",
+                      "params": { "access_token": access_token, "user_id": user_id, "activity_id": 2, "value": score, "v": version }
+                  }).then(() => {
+                      console.log('Score setted!');
+                  }
+              );
           }
 
           function showFullscreenAd() {
@@ -153,31 +168,7 @@
                   console.log('Rewarded! Id: ' + id);
               })
           }
+    </script>
 
-          function addToTMenu() {
-              vkBridge.send('VKWebAppAddToMenu').then(() => {
-                  console.log('Added to menu!');
-              });
-          }
-
-          function allowNotification() {
-              vkBridge.send('VKWebAppAllowNotifications').then(() => {
-                      console.log('Notifications allowed!');
-              });
-          }
-
-          function setScoreInFeed(score) {
-              vkBridge.send("VKWebAppCallAPIMethod",
-                  {
-                      "method": "users.get", "request_id": "",
-                      "params": { "access_token": access_token, "user_id": user_id, "activity_id": 2, "value": score, "v": version}
-                  }).then(() => {
-                      console.log('Score setted!');
-                  }
-              );
-          }
-
-      </script>
-
-  </body >
-</html >
+</body>
+</html>
