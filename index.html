@@ -123,7 +123,7 @@
                   console.log('User id: ' + user_id);
               });
 
-              vkBridge.send('VKWebAppGetClientVersionResult').then(data => {
+              vkBridge.send('VKWebAppGetClientVersion').then(data => {
                   console.log(data);
                   version = data.version;
                   console.log('User VK version: ' + version);
