@@ -137,7 +137,6 @@
           }
 
           function setUserData(score) {
-              score = 0;
               vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": score.toString() }).then(() => {
                   console.log('Score passed to the server: ' + score);
               });
