@@ -118,19 +118,15 @@
                   console.log('Token received successfully')
               });
 
+              vkBridge.send('VKWebAppGetUserInfo').then(data => {
+                  user_id = data.id;
+                  console.log('User id: ' + id);
+              });
+
               vkBridge.send('VKWebAppGetClientVersionResult').then(data => {
                   version = data.version;
                   console.log('User VK version: ' + version);
               });
-          }
-
-          function authenticateUser() {
-              vkBridge.send('VKWebAppGetUserInfo').then(data => {
-                  user_id = data.id;
-                  console.log('User is authorized User id: ' + id);
-              });
-
-              runAtStart();
           }
 
           function getUserData() {
