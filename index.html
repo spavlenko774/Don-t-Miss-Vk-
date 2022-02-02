@@ -103,13 +103,13 @@
           var user_id;
 
           function runAtStart() {
-              vkBridge.send('VKWebAppAddToMenu').then(() => {
-                console.log('Added to menu!');
-              });
+              //vkBridge.send('VKWebAppAddToMenu').then(() => {
+              //  console.log('Added to menu!');
+              //});
 
-              vkBridge.send('VKWebAppAllowNotifications').then(() => {
-                  console.log('Notifications allowed!');
-              });
+              //vkBridge.send('VKWebAppAllowNotifications').then(() => {
+              //    console.log('Notifications allowed!');
+              //});
           }
 
           function getInfo() {
@@ -124,7 +124,6 @@
               });
 
               vkBridge.send('VKWebAppGetClientVersion').then(data => {
-                  console.log(data);
                   version = data.version;
                   console.log('User VK version: ' + version);
               });
@@ -132,7 +131,7 @@
 
           function getUserData() {
               vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(score => {
-                  console.log('Score received from the server: ' + score);
+                  console.log(score);
                   console.log('Score received from the server: ' + Object.values((Object.values(score)[0])[0])[1]);
                   window.unityInstance.SendMessage('Vk Sdk', 'GetDataFromVk', Object.values((Object.values(score)[0])[0])[1].toString());
               });
