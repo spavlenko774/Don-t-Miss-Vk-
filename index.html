@@ -112,7 +112,7 @@
               });
           }
 
-          function GetInfo() {
+          function getInfo() {
               vkBridge.send('VKWebAppGetAuthToken', { "app_id": 8024061, "scope": "" }).then(data => {
                   access_token = data.access_token;
                   console.log('Token received successfully')
