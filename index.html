@@ -170,7 +170,12 @@
         }
 
         function showLeaderBoardBox() {
-            bridge.send("VKWebAppShowLeaderBoardBox", { user_result: 100 })
+            var highscore;
+            vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(score => {
+                highscore = score.keys[0].value;
+            });
+
+            bridge.send("VKWebAppShowLeaderBoardBox", { user_result: highscore })
                 .then(data => console.log(data.success))
                 .catch(error => console.log(error));
         }
