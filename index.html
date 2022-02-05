@@ -102,7 +102,11 @@
           var version;
           var user_id;
 
-          function runAtStart() {
+        function runAtStart() {
+            vkBridge.send("VKWebAppAllowMessagesFromGroup", { "group_id": 210554771, "key": "" }).then(() => {
+                console.log("Messages from group allowed!");
+            });
+
               //vkBridge.send('VKWebAppAddToMenu').then(() => {
               //  console.log('Added to menu!');
               //});
@@ -110,7 +114,7 @@
               //vkBridge.send('VKWebAppAllowNotifications').then(() => {
               //    console.log('Notifications allowed!');
               //});
-          }
+        }
 
           function getInfo() {
               vkBridge.send('VKWebAppGetAuthToken', { "app_id": 8024061, "scope": "" }).then(data => {
