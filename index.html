@@ -188,11 +188,20 @@
 
             //vkBridge.send("VKWebAppShowWallPostBox", { "message": "Hello!" });
 
-            console.log(access_token.toString());
-            vkBridge.send("VKWebAppCallAPIMethod",
+            //console.log(access_token.toString());
+            //vkBridge.send("VKWebAppCallAPIMethod",
+            //    {
+            //        "method": "secure.addAppEvent", "request_id": "request",
+            //        "params": { "access_token": access_token.toString(), "user_id": user_id.toString(), "activity_id": "2", "value": "2", "v": "5.101" }
+            //    }
+            //).then(data => {
+            //    console.log(data);
+            //});
+
+            bridge.send("VKWebAppCallAPIMethod",
                 {
-                    "method": "secure.addAppEvent", "request_id": "request",
-                    "params": { "access_token": access_token.toString(), "user_id": user_id.toString(), "activity_id": "2", "value": "2", "v": "5.101" }
+                    "method": "users.get", "request_id": "32test",
+                    "params": { "user_ids": user_id.toString(), "v": "5.101", "access_token": access_token.toString() }
                 }
             ).then(data => {
                 console.log(data);
