@@ -188,7 +188,7 @@
 
             //vkBridge.send("VKWebAppShowWallPostBox", { "message": "Hello!" });
 
-            bridge.send("VKWebAppCallAPIMethod",
+            vkBridge.send("VKWebAppCallAPIMethod",
                 {
                     "method": "users.get", "request_id": "32test",
                     "params": { "user_ids": user_id.toString(), "v": version.toString(), "access_token": access_token.toString() }
