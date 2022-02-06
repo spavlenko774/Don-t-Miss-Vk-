@@ -176,7 +176,7 @@
             });
             console.log(highscore);
 
-            vkBridge.send("VKWebAppShowLeaderBoardBox", { user_result: highscore })
+            vkBridge.send("VKWebAppShowLeaderBoardBox", { user_result: 100 })
                 .then(data => console.log(data.success))
                 .catch(error => console.log(error));
         }
