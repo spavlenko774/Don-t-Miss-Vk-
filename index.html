@@ -69,7 +69,7 @@
           } else {
               // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-              canvas.style.width = "100vw";
+              canvas.style.width = "55vh";
               canvas.style.height = "100vh";
           }
 
@@ -145,7 +145,6 @@
                 console.log('Score passed to the server: ' + score);
             });
 
-            console.log("user_id:" + user_id);
             vkBridge.send("VKWebAppCallAPIMethod",
                 {
                     "method": "secure.addAppEvent", "request_id": "",
