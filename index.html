@@ -190,8 +190,6 @@
                 .then(data => console.log(data.success))
                 .catch(error => console.log(error));
 
-            //vkBridge.send("VKWebAppShowWallPostBox", { "message": "Hello!" });
-
             //var token = "85a9c24685a9c24685a9c246e685d3adbb885a985a9c246e41d836f084ac4763b6182d0";
             //vkBridge.send("VKWebAppCallAPIMethod",
             //    {
@@ -210,6 +208,10 @@
             //).then(data => {
             //    console.log(data);
             //});
+        }
+
+        function showShareBox() {
+            vkBridge.send("VKWebAppShowWallPostBox", { "message": "Hello!" });
         }
 
     </script>
