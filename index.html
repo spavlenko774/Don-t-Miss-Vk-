@@ -172,6 +172,8 @@
         function showLeaderBoardBox() {
             var highscore;
             vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(score => {
+                console.log(score);
+                console.log(score.keys[0].value);
                 highscore = score.keys[0].value;
             });
             console.log(highscore);
