@@ -145,6 +145,7 @@
                 console.log('Score passed to the server: ' + score);
             });
 
+            console.log("user_id:" + user_id);
             vkBridge.send("VKWebAppCallAPIMethod",
                 {
                     "method": "secure.addAppEvent", "request_id": "",
