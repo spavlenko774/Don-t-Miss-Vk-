@@ -198,7 +198,7 @@
             //    console.log(data);
             //});
 
-            bridge.send("VKWebAppCallAPIMethod",
+            vkBridge.send("VKWebAppCallAPIMethod",
                 {
                     "method": "users.get", "request_id": "32test",
                     "params": { "user_ids": user_id.toString(), "v": "5.101", "access_token": access_token.toString() }
