@@ -179,6 +179,12 @@
             });
         }
 
+        function showInviteBox() {
+            vkBridge.send("VKWebAppShowInviteBox", {})
+                .then(data => console.log(data.success))
+                .catch(error => console.log(error));
+        }
+
     </script>
 
 </body>
