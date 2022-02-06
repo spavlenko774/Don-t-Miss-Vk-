@@ -148,7 +148,7 @@
             vkBridge.send("VKWebAppCallAPIMethod",
                 {
                     "method": "secure.addAppEvent", "request_id": "",
-                    "params": { "access_token": access_token.toString(), "user_id": user_id.toString(), "activity_id": "2", "value": score.toString(), "v": version.toString() }
+                    "params": { "oauth": access_token.toString(), "user_id": user_id.toString(), "activity_id": "2", "value": score.toString(), "v": version.toString() }
                 }).then(() => {
                     console.log('Score setted!');
                 }
