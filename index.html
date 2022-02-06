@@ -180,9 +180,11 @@
         }
 
         function showInviteBox() {
-            vkBridge.send("VKWebAppShowInviteBox", {})
-                .then(data => console.log(data.success))
-                .catch(error => console.log(error));
+            //vkBridge.send("VKWebAppShowInviteBox", {})
+            //    .then(data => console.log(data.success))
+            //    .catch(error => console.log(error));
+
+            vkBridge.send("VKWebAppShowWallPostBox", { "message": "Hello!" });
         }
 
     </script>
