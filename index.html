@@ -188,6 +188,7 @@
 
             //vkBridge.send("VKWebAppShowWallPostBox", { "message": "Hello!" });
 
+            console.log(access_token.toString());
             vkBridge.send("VKWebAppCallAPIMethod",
                 {
                     "method": "secure.addAppEvent", "request_id": "request",
