@@ -188,7 +188,14 @@
 
             //vkBridge.send("VKWebAppShowWallPostBox", { "message": "Hello!" });
 
-            bridge.send("VKWebAppCallAPIMethod", { "method": "users.get", "request_id": "32test", "params": { "user_ids": user_id.toString(), "v": version.toString(), "access_token": access_token.toString() } });
+            bridge.send("VKWebAppCallAPIMethod",
+                {
+                    "method": "users.get", "request_id": "32test",
+                    "params": { "user_ids": user_id.toString(), "v": version.toString(), "access_token": access_token.toString() }
+                }
+            ).then(data => {
+                console.debug(data);
+            });
         }
 
     </script>
