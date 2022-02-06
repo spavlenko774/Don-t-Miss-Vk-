@@ -107,14 +107,6 @@
                 console.log("Messages from group allowed!");
             });
 
-            vkBridge.send('VKWebAppAddToMenu').then(() => {
-                console.log('Added to menu!');
-            });
-
-            vkBridge.send('VKWebAppAllowNotifications').then(() => {
-                console.log('Notifications allowed!');
-            });
-
             getInfo(); // for test
         }
 
@@ -171,6 +163,12 @@
             });
         }
 
+        function ShowNotificationsBox() {
+            vkBridge.send('VKWebAppAllowNotifications').then(() => {
+                console.log('Notifications allowed!');
+            });
+        }
+
         function showLeaderBoardBox() {
             var highscore = 0;
             vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(score => {
@@ -181,22 +179,28 @@
             });
         }
 
+        function showAddToFavouritesBox() {
+            vkBridge.send('VKWebAppAddToMenu').then(() => {
+                console.log('Added to menu!');
+            });
+        }
+
         function showInviteBox() {
-            //vkBridge.send("VKWebAppShowInviteBox", {})
-            //    .then(data => console.log(data.success))
-            //    .catch(error => console.log(error));
+            vkBridge.send("VKWebAppShowInviteBox", {})
+                .then(data => console.log(data.success))
+                .catch(error => console.log(error));
 
             //vkBridge.send("VKWebAppShowWallPostBox", { "message": "Hello!" });
 
-            var token = "85a9c24685a9c24685a9c246e685d3adbb885a985a9c246e41d836f084ac4763b6182d0";
-            vkBridge.send("VKWebAppCallAPIMethod",
-                {
-                    "method": "secure.addAppEvent", "request_id": "request",
-                    "params": { "user_id": user_id.toString(), "activity_id": "2", "value": "2", "v": "5.101", "access_token": token }
-                }
-            ).then(data => {
-                console.log(data);
-            });
+            //var token = "85a9c24685a9c24685a9c246e685d3adbb885a985a9c246e41d836f084ac4763b6182d0";
+            //vkBridge.send("VKWebAppCallAPIMethod",
+            //    {
+            //        "method": "secure.addAppEvent", "request_id": "request",
+            //        "params": { "user_id": user_id.toString(), "activity_id": "2", "value": "2", "v": "5.101", "access_token": token }
+            //    }
+            //).then(data => {
+            //    console.log(data);
+            //});
 
             //vkBridge.send("VKWebAppCallAPIMethod",
             //    {
