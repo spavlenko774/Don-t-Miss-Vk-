@@ -173,6 +173,7 @@
             var highscore = 0;
             vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(score => {
                 highscore = score.keys[0].value;
+                console.log(highscore);
             });
             console.log(highscore);
 
