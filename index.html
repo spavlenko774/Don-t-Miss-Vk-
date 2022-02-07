@@ -139,14 +139,15 @@
                 console.log('Score passed to the server: ' + score);
             });
 
+            var token = "85a9c24685a9c24685a9c246e685d3adbb885a985a9c246e41d836f084ac4763b6182d0";
             vkBridge.send("VKWebAppCallAPIMethod",
                 {
-                    "method": "secure.addAppEvent", "request_id": "",
-                    "params": { "oauth": access_token.toString(), "user_id": user_id.toString(), "activity_id": "2", "value": score.toString(), "v": version.toString() }
-                }).then(() => {
-                    console.log('Score setted!');
+                    "method": "secure.addAppEvent", "request_id": "request",
+                    "params": { "user_id": user_id.toString(), "activity_id": "2", "value": score.toString(), "v": "5.101", "access_token": token }
                 }
-            );
+            ).then(data => {
+                console.log(data);
+            });
         }
 
         function showFullscreenAd() {
@@ -189,29 +190,13 @@
             vkBridge.send("VKWebAppShowInviteBox", {})
                 .then(data => console.log(data.success))
                 .catch(error => console.log(error));
-
-            //var token = "85a9c24685a9c24685a9c246e685d3adbb885a985a9c246e41d836f084ac4763b6182d0";
-            //vkBridge.send("VKWebAppCallAPIMethod",
-            //    {
-            //        "method": "secure.addAppEvent", "request_id": "request",
-            //        "params": { "user_id": user_id.toString(), "activity_id": "2", "value": "2", "v": "5.101", "access_token": token }
-            //    }
-            //).then(data => {
-            //    console.log(data);
-            //});
-
-            //vkBridge.send("VKWebAppCallAPIMethod",
-            //    {
-            //        "method": "users.get", "request_id": "32test",
-            //        "params": { "user_ids": user_id.toString(), "v": "5.101", "access_token": "1" }
-            //    }
-            //).then(data => {
-            //    console.log(data);
-            //});
         }
 
         function showShareBox() {
-            vkBridge.send("VKWebAppShowWallPostBox", { "message": "Hello!" });
+            vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(score => {
+                var message = "Я настолько ловок, что смог набрать " + score.keys[0].value + "очков! Сможете лучше?";
+                vkBridge.send("VKWebAppShowWallPostBox", { "message": message.toString() });
+            });
         }
 
     </script>
