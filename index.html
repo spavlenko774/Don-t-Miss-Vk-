@@ -98,33 +98,31 @@
     </script>
 
     <script>
-        var access_token;
-        var version;
+        //var access_token;
+        //var version;
         var user_id;
 
         function runAtStart() {
             vkBridge.send("VKWebAppAllowMessagesFromGroup", { "group_id": 210554771, "key": "" }).then(() => {
                 console.log("Messages from group allowed!");
             });
-
-            //getInfo(); // for test
         }
 
         function getInfo() {
-            vkBridge.send('VKWebAppGetAuthToken', { "app_id": 8024061, "scope": "" }).then(data => {
-                access_token = data.access_token;
-                console.log('Token received successfully')
-            });
+            //vkBridge.send('VKWebAppGetAuthToken', { "app_id": 8024061, "scope": "" }).then(data => {
+            //    access_token = data.access_token;
+            //    console.log('Token received successfully')
+            //});
 
             vkBridge.send('VKWebAppGetUserInfo').then(data => {
                 user_id = data.id;
                 console.log('User id: ' + user_id);
             });
 
-            vkBridge.send('VKWebAppGetClientVersion').then(data => {
-                version = data.version;
-                console.log('User VK version: ' + version);
-            });
+            //vkBridge.send('VKWebAppGetClientVersion').then(data => {
+            //    version = data.version;
+            //    console.log('User VK version: ' + version);
+            //});
         } 
 
         function getUserData() {
@@ -134,12 +132,11 @@
             });
         }
 
-        function setUserData(score) {
+        function setUserData(score, token) {
             vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": score.toString() }).then(() => {
                 console.log('Score passed to the server: ' + score);
             });
 
-            var token = "85a9c24685a9c24685a9c246e685d3adbb885a985a9c246e41d836f084ac4763b6182d0";
             vkBridge.send("VKWebAppCallAPIMethod",
                 {
                     "method": "secure.addAppEvent", "request_id": "request",
